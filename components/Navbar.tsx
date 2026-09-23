@@ -21,7 +21,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const close = () => setOpen(false);
 
-  // Clear over the hero, frosted see-through blue once the page scrolls.
+  // Transparent over the hero, solid once the page scrolls.
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
     onScroll();
@@ -45,7 +45,7 @@ export default function Navbar() {
     <>
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
-          scrolled ? "bg-brand lg:bg-brand/60 lg:backdrop-blur-md" : "bg-transparent"
+          scrolled ? "bg-brand" : "bg-transparent"
         }`}
       >
         <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-12">

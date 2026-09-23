@@ -31,7 +31,7 @@ Standing rules for building this site. Follow these in every session.
 
 - Setup complete.
 - Navbar built (`components/Navbar.tsx`, links in `lib/navigation.ts`), rendered site-wide from `app/layout.tsx`. The mobile menu is a full-screen panel that slides down from the top.
-- The navbar is fixed and transparent over the page's top section, then turns a see-through frosted blue (`bg-brand/60 backdrop-blur-md`) on scroll. Every page must therefore start with a dark top section.
+- The navbar is fixed and transparent over the page's top section, then turns solid `bg-brand` on scroll. Every page must therefore start with a dark top section.
 - Homepage hero built (`components/Hero.tsx`): full-screen background image (`public/images/hero.png`) with a dark overlay, text at the bottom left, and a solid white CTA plus an outlined one.
 - Hero animations: the photo slowly zooms out (Ken Burns, `animate-kenburns`), and the headline, copy and buttons fade up one after another (`animate-fade-up`). Both are defined in `app/globals.css` and use `motion-safe:`.
 - Services section built (`components/Services.tsx`, data in `lib/services.ts`): 3 photo cards on a dark background. The photos are placeholders from Pinterest (`i.pinimg.com` is allowed in `next.config.ts`).
@@ -51,6 +51,6 @@ Standing rules for building this site. Follow these in every session.
 - Article pages built (`app/news/[slug]/page.tsx`, prerendered with `generateStaticParams`): photo hero, article body, a "not legal advice" note, a "Speak With Our Team" CTA, and 2 more articles. Each article in `lib/news.ts` has a `slug` and `body`; links come from `articleHref()`. `app/news/[slug]/not-found.tsx` handles bad slugs. The 3 articles are placeholder content Claude wrote.
 - Smooth scrolling: GSAP ScrollSmoother (`components/SmoothScroll.tsx`) wraps the page content and footer in `app/layout.tsx`. The navbar stays outside the wrapper. Content is moved with transforms, so `position: sticky` does not work inside it. It is off when the device asks for reduced motion.
 - Footer wordmark is an endless marquee of "Lex Habitae Solicitors" (`animate-marquee` in `app/globals.css`).
-- Mobile menu sits outside the `<header>` in `Navbar.tsx`, because the header's `backdrop-blur` would otherwise trap the full-screen menu inside the 80px bar. On mobile the scrolled bar is solid `bg-brand`; the frosted see-through style applies from `lg` up.
+- Mobile menu sits outside the `<header>` in `Navbar.tsx`, so any future header effect (e.g. `backdrop-blur`) cannot trap the full-screen menu inside the 80px bar.
 - SEO: site-wide tags in `app/layout.tsx` (title template, description, Open Graph, Twitter, robots, theme colour, LegalService JSON-LD), per-page tags through `pageMetadata()` in `lib/seo.ts`, plus `app/robots.ts`, `app/sitemap.ts` and a generated share image (`app/opengraph-image.tsx`). The domain comes from `NEXT_PUBLIC_SITE_URL` (fallback `https://www.lexhabitae.com`).
 - Next: waiting for the next spec.
